@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sergio Matamoros — Portafolio</title>
+  <meta name="description" content="Portafolio personal de Sergio Matamoros: proyectos, habilidades y contacto." />
+  <meta property="og:title" content="Sergio Matamoros — Portafolio" />
+  <meta property="og:description" content="Proyectos, habilidades y contacto." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0ea5e9" />
+  <style>
+    :root {
+      --bg: #0b1220;          /* fondo oscuro por defecto */
+      --text: #e6e8ee;
+      --muted: #a7b0c0;
+      --card: #111827;
+      --accent: #0ea5e9;      /* azul */
+      --accent-2: #22d3ee;    /* cian */
+      --ring: rgba(34,211,238,.35);
+      --shadow: 0 10px 25px rgba(2, 8, 23, .35);
+    }
+    .light {
+      --bg: #f7fafc;
+      --text: #0b1220;
+      --muted: #4b5563;
+      --card: #ffffff;
+      --accent: #2563eb;      /* azul */
+      --accent-2: #06b6d4;    /* cian */
+      --ring: rgba(37, 99, 235, .25);
+      --shadow: 0 10px 25px rgba(2, 6, 23, .08);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      background: var(--bg); color: var(--text);
+    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.2rem; }
+    header {
+      position: sticky; top: 0; z-index: 50; backdrop-filter: saturate(150%) blur(8px);
+      background: color-mix(in oklab, var(--bg) 80%, transparent);
+      border-bottom: 1px solid color-mix(in oklab, var(--text) 10%, transparent);
+    }
+    nav { display:flex; align-items:center; justify-content:space-between; padding: .9rem 0; }
+    nav a { color: var(--muted); text-decoration: none; margin-left: 1rem; font-weight: 500; }
+    nav a:hover { color: var(--text); }
+
+    .brand { display:flex; align-items:center; gap:.6rem; font-weight:800; letter-spacing:.3px; color:var(--text); text-decoration:none; }
+    .brand .dot { width:.55rem;height:.55rem;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--accent-2)); box-shadow: 0 0 0 .25rem var(--ring); }
+
+    .btn {
+      display:inline-flex; align-items:center; gap:.5rem; padding:.7rem 1rem; border-radius:999px; border:1px solid color-mix(in oklab, var(--text) 12%, transparent);
+      background: linear-gradient(180deg, color-mix(in oklab, var(--card) 85%, transparent), var(--card));
+      color:var(--text); text-decoration:none; font-weight:600; box-shadow: var(--shadow);
+    }
+    .btn:hover { outline: 3px solid var(--ring); }
+    .btn.ghost { background: transparent; box-shadow:none; }
+
+    .hero { padding: 4.5rem 0 3rem; display:grid; grid-template-columns: 1.2fr .8fr; gap:2rem; align-items:center; }
+    .hero h1 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; margin:.5rem 0; }
+    .hero p.lead { color: var(--muted); font-size: 1.05rem; }
+    .kpis { display:flex; gap:1rem; flex-wrap:wrap; margin:1.2rem 0; }
+    .kpi { padding:.7rem 1rem; border:1px solid color-mix(in oklab, var(--text) 10%, transparent); border-radius: .9rem; background:var(--card); }
+
+    .avatar { justify-self:end; width: 180px; height: 180px; border-radius: 999px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); padding: 3px; }
+    .avatar > img { width:100%; height:100%; object-fit:cover; border-radius:inherit; display:block; background:var(--bg); }
+
+    section { padding: 2.6rem 0; }
+    .section-title { font-size: 1.6rem; margin: 0 0 1rem; }
+    .grid { display:grid; gap:1rem; }
+    .grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+
+    .card { background: var(--card); border:1px solid color-mix(in oklab, var(--text) 10%, transparent); border-radius: 1rem; padding:1rem; box-shadow: var(--shadow); }
+    .card h3 { margin:.2rem 0 .4rem; font-size:1.1rem; }
+    .stack { display:flex; flex-wrap:wrap; gap:.5rem; }
+    .tag { font-size:.85rem; padding:.35rem .6rem; border-radius: .6rem; border:1px solid color-mix(in oklab, var(--text) 12%, transparent); color: var(--muted); }
+
+    .timeline { border-left: 2px solid color-mix(in oklab, var(--text) 12%, transparent); padding-left: 1rem; }
+    .timeline .item { margin: 0 0 1rem; }
+    .timeline .role { font-weight:700; }
+    .timeline .meta { color: var(--muted); font-size:.95rem; }
+
+    footer { padding:2rem 0 3rem; color: var(--muted); text-align:center; }
+
+    .row { display:flex; gap:.7rem; flex-wrap:wrap; }
+    .spacer { height: 1rem; }
+
+    /* Responsivo */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; text-align:center; }
+      .avatar { justify-self:center; }
+      .grid.cols-3 { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .grid.cols-3, .grid.cols-2 { grid-template-columns: 1fr; }
+      nav a { margin-left:.6rem; }
+    }
+  </style>
+</head>
+<body>
+  
+  <header>
+    <div class="container">
+      <nav>
+        <a class="brand" href="#">
+          <span class="dot" aria-hidden="true"></span>
+          <span>Sergio Matamoros</span>
+        </a>
+        <div class="row">
+          <a href="#proyectos">Proyectos</a>
+          <a href="#habilidades">Habilidades</a>
+          <a href="#experiencia">Experiencia</a>
+          <a href="#contacto">Contacto</a>
+          <button id="themeToggle" class="btn ghost" aria-label="Cambiar tema">🌓</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <section class="hero" id="inicio">
+      <div>
+        <p class="tag">Full‑Stack Developer</p>
+        <h1>Hi, i am Sergio Armando Matamoros Nuñez</h1>
+        <p class="lead">Computer Engineering student. Passionate about learning by building: JavaScript, Node.js, React, Vue, Python, and databases (SQLite, SQL Server).</p>
+        <div class="kpis">
+          <span class="kpi">⚙️ Constructing real projects</span>
+          <span class="kpi">📚 Practical learning</span>
+          <span class="kpi">💼 Open to opportunities</span>
+        </div>
+        <div class="row">
+          <a class="btn" href="#proyectos">View projects</a>
+          <a class="btn ghost" href="CV_Sergio_Matamoros.pdf" download>Download CV</a>
+        </div>
+      </div>
+      <div class="avatar" aria-hidden="true">
+        <!-- Reemplaza el src por tu foto -->
+        <img src="Perfil.jpg" alt="Avatar o foto de Sergio" />
+      </div>
+    </section>
+
+    <section id="sobre-mi">
+      <h2 class="section-title">About me</h2>
+      <div class="card">
+        <p>
+          I am a product-oriented developer focused on the web. I enjoy turning ideas into
+          functional and polished experiences. I have worked with JavaScript/TypeScript, React/Vue,
+          Node.js, and SQLite. I am interested in applied AI, machine learning, and building
+          useful tools for real people.
+        </p>
+      </div>
+    </section>
+
+    <section id="habilidades">
+      <h2 class="section-title">Skills</h2>
+      <div class="grid cols-3">
+        <div class="card">
+          <h3>Lenguages</h3>
+          <div class="stack">
+            <span class="tag">JavaScript</span>
+            <span class="tag">Python</span>
+            <span class="tag">Java</span>
+            <span class="tag">C</span>
+            <span class="tag">SQL</span>
+            <span class="tag">PHP</span>
+            <span class="tag">Kotlin</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Frontend</h3>
+          <div class="stack">
+            <span class="tag">React</span>
+            <span class="tag">Vue</span>
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">Java</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Backend & DB</h3>
+          <div class="stack">
+            <span class="tag">Node.js</span>
+            <span class="tag">Express</span>
+            <span class="tag">SQLite</span>
+            <span class="tag">SQL Server</span>
+            <span class="tag">REST APIs</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">MySQL</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2 class="section-title">projects</h2>
+      <div class="grid cols-3" id="projectsGrid">
+        <!-- Ejemplos de tarjeta de proyecto -->
+        
+        <article class="card">
+          <h3>Children's Reading Platform</h3>
+          <p class="lead">Website with stories stored in SQLite and opening in new windows with JavaScript.
+</p>
+          <div class="stack">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">SQLite</span>
+          </div>
+          <div class="spacer"></div>
+          <div class="row">
+            <a class="btn" href="#" target="_blank" rel="noopener">Demo</a>
+            <a class="btn ghost" href="#" target="_blank" rel="noopener">Código</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>“Alma Libre” Clinical Management</h3>
+          <p class="lead">Modules for scheduling, patients, and reports; designed for a psychological clinic.</p>
+          <div class="stack">
+            <span class="tag">Node.js</span>
+            <span class="tag">Express</span>
+            <span class="tag">SQLite</span>
+            <span class="tag">CSS</span>
+          </div>
+          <div class="spacer"></div>
+          <div class="row">
+            <a class="btn" href="#" target="_blank" rel="noopener">Demo</a>
+            <a class="btn ghost" href="https://github.com/SmatamorosN04/Clinica_Alma_Libre" target="_blank" rel="noopener">Código</a>
+          </div>
+        </article>
+         <article class="card">
+          <h3>Scolar-Platform</h3>
+          <p class="lead">A school web platform built with Vue, React, and TypeScript for the frontend, and FastAPI for the backend. The platform offers interactive reading activities for children, with a dynamic and user-friendly interface.</p>
+          <div class="stack">
+            <span class="tag">TypeScript</span>
+            <span class="tag">FastAPI</span>
+            <span class="tag">SQLite</span>
+            <span class="tag">CSS</span>
+          </div>
+          <div class="spacer"></div>
+          <div class="row">
+            <a class="btn" href="#" target="_blank" rel="noopener">Demo</a>
+            <a class="btn ghost" href="https://github.com/SmatamorosN04/Clinica_Alma_Libre" target="_blank" rel="noopener">Código</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2 class="section-title">Experience & Education</h2>
+      <div class="grid cols-2">
+        <div class="card timeline">
+          <div class="item">
+            <div class="role">Internship — Aceitera El Real</div>
+            <div class="meta">2025 · Developer/Support</div>
+            <p>Collaboration in automation and support for internal processes.</p>
+          </div>
+          <div class="item">
+            <div class="role">Freelance / Academic Projects</div>
+            <div class="meta">2023—2025</div>
+            <p>Web applications, chatbots, and prototypes for learning.</p>
+          </div>
+        </div>
+        <div class="card timeline">
+          <div class="item">
+            <div class="role">Computer Engineering</div>
+            <div class="meta">5th year</div>
+            <p>Focus on web development, databases, and practical projects.</p>
+          </div>
+          <div class="item">
+            <div class="role">Courses and Certifications</div>
+            <div class="meta">Udemy · Basic English · Databases</div>
+            <p>Web development (3 courses), SQL, and communication fundamentals.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2 class="section-title">Contact me</h2>
+      <div class="card">
+        <p>Do you have a proposal or are you interested in collaborating? Write to me.</p>
+        <div class="row">
+          <!-- Replace with your actual links -->
+          <a class="btn" href="mailto:SmatamorosN12@gmail.com">Email</a>
+          <a class="btn ghost" href="https://github.com/SmatamorosN04/SmatamorosN04" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn ghost" href="https://www.linkedin.com/in/sergio-matamoros-6a75a026a" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <small>© <span id="year"></span> Sergio Matamoros. Hecho con ♥ y mucho café (Never Give Up).</small>
+    </div>
+  </footer>
+
+  <script>
+    // Persistencia de tema (oscuro/claro)
+    (function initTheme(){
+      const saved = localStorage.getItem('theme');
+      const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      if(saved === 'light' || (!saved && prefersLight)) document.documentElement.classList.add('light');
+    })();
+
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      document.documentElement.classList.toggle('light');
+      const isLight = document.documentElement.classList.contains('light');
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    });
+
+    // Año dinámico
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
